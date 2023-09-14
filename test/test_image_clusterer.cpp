@@ -19,7 +19,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 #include <gtest/gtest.h>
-#include <opencv/cv.h>
+#include <opencv2/imgproc.hpp>
 
 #include <string>
 #include <vector>

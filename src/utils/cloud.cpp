@@ -114,7 +114,7 @@ typename pcl::PointCloud<pcl::PointXYZL>::Ptr Cloud::ToPcl() const {
     pcl_point.label = point.ring();
     pcl_cloud.push_back(pcl_point);
   }
-  return make_shared<PclCloud>(pcl_cloud);
+  return boost::make_shared<PclCloud>(pcl_cloud);
 }
 
 template <>

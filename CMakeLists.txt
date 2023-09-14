@@ -25,7 +25,7 @@ include(DistVersion.cmake)
 system_info(DISTRO)
 message(STATUS "DISTRO: ${DISTRO}")
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -33,7 +33,7 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -fPIC")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -fPIC -pthread")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
@@ -49,20 +49,25 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
-include(CTest)
-IF(IS_DIRECTORY "/usr/src/gtest/")
-  MESSAGE(STATUS "Found google test sources in /usr/src/gtest/")
 
-  ADD_SUBDIRECTORY(/usr/src/gtest/ gtest)
-
-  # mimick the behaviour of find_package(GTest)
-  SET(GTEST_FOUND TRUE)
-  SET(GTEST_BOTH_LIBRARIES gtest gtest_main)
-  SET(GTEST_LIBRARIES gtest)
-  SET(GTEST_MAIN_LIBRARIES gtest_main)
+find_package(GTest)
+IF(GTest_FOUND)
+  MESSAGE("GTest found!")
 ELSE()
-  find_package(GTest)
+  MESSAGE("GTest NOT found!")
+  IF(IS_DIRECTORY "/usr/src/gtest/")
+    MESSAGE("Found google test sources in /usr/src/gtest/")
+    MESSAGE("Mimick the behaviour of find_package(GTest)")
+    ADD_SUBDIRECTORY(/usr/src/gtest/ gtest)
+
+    # mimick the behaviour of find_package(GTest)
+    SET(GTEST_FOUND TRUE)
+    SET(GTEST_BOTH_LIBRARIES gtest gtest_main)
+    SET(GTEST_LIBRARIES gtest)
+    SET(GTEST_MAIN_LIBRARIES gtest_main)
+  ENDIF()
 ENDIF()
+
 
 set(Boost_USE_STATIC_LIBS OFF)
 
@@ -90,7 +95,7 @@ if(${DISTRO} MATCHES "14.04")
       Qt4::QtXml
       Qt4::QtOpenGL
       Qt4::QtGui)
-elseif(${DISTRO} MATCHES "16.04" OR ${DISTRO} MATCHES "18.04")
+elseif(${DISTRO} MATCHES "16.04" OR ${DISTRO} MATCHES "18.04" OR ${DISTRO} MATCHES "20.04")
   find_package(Qt5 REQUIRED COMPONENTS Core Xml OpenGL Gui Widgets)
   include_directories(${Qt5Core_INCLUDE_DIRS}
                       ${Qt5Xml_INCLUDE_DIRS}

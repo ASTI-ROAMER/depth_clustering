@@ -43,6 +43,9 @@ class RichPoint {
   explicit RichPoint(Eigen::Vector3f& eigen_vec) : _point(eigen_vec) {}
   ~RichPoint() {}
 
+  // RANDEL: added copy constructor
+  RichPoint(const RichPoint& other) : _point(other.AsEigenVector()), _ring(other.ring()) {}
+
   inline int ring() const { return _ring; }
   inline float x() const { return _point.x(); }
   inline float y() const { return _point.y(); }

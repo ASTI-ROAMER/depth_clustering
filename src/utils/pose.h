@@ -46,6 +46,13 @@ class Pose : public Eigen::Affine3f {
     this->matrix() = Eigen::Matrix4f::Identity();
   }
 
+  // RANDEL: added a copy constructor
+  Pose(const Pose& other) : Base(other), _likelihood(other.likelihood())
+  {
+    // this->matrix() = other.matrix();
+    // this->SetLikelihood(other.likelihood());
+  }
+
   Pose(const float x, const float y, const float theta) : Pose() {
     this->SetMatrixFromTheta(theta);
     this->SetX(x);

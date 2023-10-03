@@ -188,6 +188,11 @@ include_directories(
 
 add_subdirectory(src)
 add_subdirectory(examples)
+## Mark cpp header files for installation
+install(DIRECTORY src/
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+   FILES_MATCHING PATTERN "*.h"
+)
 
 message(STATUS "BUILD_TESTING: ${BUILD_TESTING}")
 if (${BUILD_TESTING})

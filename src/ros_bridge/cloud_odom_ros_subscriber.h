@@ -24,9 +24,11 @@
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <nav_msgs/Odometry.h>
+#include <geometry_msgs/PoseStamped.h>
 #include <message_filters/subscriber.h>
 #include <message_filters/synchronizer.h>
 #include <message_filters/sync_policies/approximate_time.h>
+#include <time.h>
 
 #include <string>
 #include <map>
@@ -36,6 +38,8 @@
 #include "utils/cloud.h"
 #include "utils/useful_typedefs.h"
 
+extern ros::Time stamps_sub; //https://stackoverflow.com/questions/9702053/how-to-declare-a-global-variable-in-c
+
 namespace depth_clustering {
 
 /**
@@ -44,14 +48,19 @@ namespace depth_clustering {
 class CloudOdomRosSubscriber : public AbstractSender<Cloud> {
   using PointCloudT = sensor_msgs::PointCloud2;
   using OdometryT = nav_msgs::Odometry;
+  using PoseT = geometry_msgs::PoseStamped;
   using ApproximateTimePolicy =
       message_filters::sync_policies::ApproximateTime<PointCloudT, OdometryT>;
+  using ApproximateTimePolicyPose =
+      message_filters::sync_policies::ApproximateTime<PointCloudT, PoseT>;
 
  public:
   CloudOdomRosSubscriber(ros::NodeHandle* node_handle,
                          const ProjectionParams& params,
                          const std::string& topic_clouds,
-                         const std::string& topic_odom = "");
+                         //const std::string& topic_odom = "");
+                         const std::string& topic_odom = "",
+                         const std::string& topic_pose = "");
   virtual ~CloudOdomRosSubscriber() {
     delete _subscriber_odom;
     delete _subscriber_clouds;
@@ -67,6 +76,11 @@ class CloudOdomRosSubscriber : public AbstractSender<Cloud> {
   void Callback(const PointCloudT::ConstPtr& msg_cloud,
                 const OdometryT::ConstPtr& msg_odom);
 
+  void CallbackPose(const PointCloudT::ConstPtr& msg_cloud,
+                const PoseT::ConstPtr& msg_pose);
+
+
+
   /**
    * @brief      Get point cloud from ROS
    *
@@ -81,15 +95,20 @@ class CloudOdomRosSubscriber : public AbstractSender<Cloud> {
 
  protected:
   Pose RosOdomToPose(const OdometryT::ConstPtr& msg);
+  Pose RosPoseToPose(const PoseT::ConstPtr& msg);
   Cloud::Ptr RosCloudToCloud(const PointCloudT::ConstPtr& msg);
 
   ros::NodeHandle* _node_handle;
 
   message_filters::Subscriber<PointCloudT>* _subscriber_clouds;
   message_filters::Subscriber<OdometryT>* _subscriber_odom;
+  message_filters::Subscriber<PoseT>* _subscriber_pose;
   message_filters::Synchronizer<ApproximateTimePolicy>* _sync;
+  message_filters::Synchronizer<ApproximateTimePolicyPose>* _sync_pose;
   std::string _topic_clouds;
   std::string _topic_odom;
+  std::string _topic_pose;
+
 
   ProjectionParams _params;
 

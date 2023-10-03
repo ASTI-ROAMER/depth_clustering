@@ -157,7 +157,7 @@ else()
 endif()
 
 catkin_package(
- INCLUDE_DIRS src
+ INCLUDE_DIRS include
  LIBRARIES
       cloud
       identifiable
@@ -173,7 +173,9 @@ catkin_package(
 )
 
 include_directories(
+  # for qt/widgets headers, for QT moc
   src
+  include/${PROJECT_NAME}
   # for QT moc files
   ${PROJECT_BINARY_DIR}/src
   # dependencies we have no control over
@@ -189,7 +191,7 @@ include_directories(
 add_subdirectory(src)
 add_subdirectory(examples)
 ## Mark cpp header files for installation
-install(DIRECTORY src/
+install(DIRECTORY include/${PROJECT_NAME}/
    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
    FILES_MATCHING PATTERN "*.h"
 )

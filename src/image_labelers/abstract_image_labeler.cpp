@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "./abstract_image_labeler.h"
+#include "image_labelers/abstract_image_labeler.h"
 
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui/highgui_c.h>

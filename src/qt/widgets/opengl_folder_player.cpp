@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "./opengl_folder_player.h"
+#include "qt/widgets/opengl_folder_player.h"
 
 #include <QColor>
 #include <QDebug>

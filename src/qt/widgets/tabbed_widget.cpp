@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "./tabbed_widget.h"
+#include "qt/widgets/tabbed_widget.h"
 
 TabbedWidget::TabbedWidget(QWidget *parent) : QWidget(parent) {
   _tabs = new QTabWidget;

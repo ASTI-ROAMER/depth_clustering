@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "./utils.h"
+#include "qt/utils/utils.h"
 
 #include <projections/projection_params.h>
 #include <utils/folder_reader.h>

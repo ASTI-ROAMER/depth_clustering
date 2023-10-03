@@ -24,6 +24,7 @@
 #include <Eigen/Core>
 #include <Eigen/StdVector>
 
+// #define PCL_FOUND 1
 #if PCL_FOUND
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
@@ -33,6 +34,7 @@
 #include <list>
 #include <memory>
 #include <vector>
+#include <sensor_msgs/PointCloud2.h>
 
 #include "projections/cloud_projection.h"
 #include "projections/ring_projection.h"
@@ -55,10 +57,14 @@ class Cloud {
   using ConstPtr = shared_ptr<const Cloud>;
 
   Cloud() : _points{}, _pose{}, _sensor_pose{} {}
+  explicit Cloud(const sensor_msgs::PointCloud2& pcl2_msg);
   explicit Cloud(const Cloud& cloud);
   explicit Cloud(const Pose& pose) : _pose(pose), _sensor_pose() {}
 
   virtual ~Cloud() {}
+
+  // RANDEL: added copy assignment
+  Cloud& operator=(const Cloud& other);
 
   inline const RichPoint::AlignedVector& points() const { return _points; }
 
@@ -99,6 +105,8 @@ class Cloud {
 
   static Cloud::Ptr FromImage(const cv::Mat& image,
                               const ProjectionParams& params);
+
+  // void ImageToPcl2(const std::unordered_map<uint16_t, Cloud>& clouds, sensor_msgs::PointCloud2& pcl2_msg);
 
 // PCL specific part
 #if PCL_FOUND

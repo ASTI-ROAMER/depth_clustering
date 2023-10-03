@@ -2,7 +2,7 @@
 //
 // GNU-GPL licence that follows one of libQGLViewer.
 
-#include "./viewer.h"
+#include "qt/viewer/viewer.h"
 
 using std::lock_guard;
 using std::mutex;

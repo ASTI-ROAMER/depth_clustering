@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "./drawable_cube.h"
+#include "qt/drawables/drawable_cube.h"
 #include <GL/glut.h>
 
 namespace depth_clustering {

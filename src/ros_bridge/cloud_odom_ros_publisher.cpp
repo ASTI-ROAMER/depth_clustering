@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License along
 // with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "cloud_odom_ros_publisher.h"
-#include "cloud_odom_ros_subscriber.h" //get extern time
+#include "ros_bridge/cloud_odom_ros_publisher.h"
+#include "ros_bridge/cloud_odom_ros_subscriber.h" //get extern time
 
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/highgui.hpp>
@@ -53,6 +53,7 @@ using sensor_msgs::PointCloud2ConstPtr;
 
 
 void CloudOdomRosPublisher::OnNewObjectReceived(const std::unordered_map<uint16_t, Cloud>& clouds, const int id) {
+  (void)id;         // RANDEL: to suppres unused param
   Timer total_timer;
   PointCloudT pcl_cloud;
   ImageToPcl(clouds, pcl_cloud);

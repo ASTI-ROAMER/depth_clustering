@@ -36,11 +36,11 @@
 #include <vector>
 #include <sensor_msgs/PointCloud2.h>
 
-#include "projections/cloud_projection.h"
-#include "projections/ring_projection.h"
-#include "projections/spherical_projection.h"
-#include "utils/pose.h"
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/projections/cloud_projection.h"
+#include "depth_clustering/projections/ring_projection.h"
+#include "depth_clustering/projections/spherical_projection.h"
+#include "depth_clustering/utils/pose.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
 namespace depth_clustering {
 

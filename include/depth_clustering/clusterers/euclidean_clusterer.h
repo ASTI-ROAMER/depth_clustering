@@ -29,12 +29,12 @@
 #include <ctime>
 #include <chrono>
 
-#include "communication/abstract_client.h"
-#include "communication/abstract_sender.h"
-#include "utils/useful_typedefs.h"
-#include "utils/cloud.h"
+#include "depth_clustering/communication/abstract_client.h"
+#include "depth_clustering/communication/abstract_sender.h"
+#include "depth_clustering/utils/useful_typedefs.h"
+#include "depth_clustering/utils/cloud.h"
 
-#include "clusterers/abstract_clusterer.h"
+#include "depth_clustering/clusterers/abstract_clusterer.h"
 
 namespace depth_clustering {
 

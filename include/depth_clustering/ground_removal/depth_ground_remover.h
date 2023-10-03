@@ -25,11 +25,11 @@
 
 #include <algorithm>
 
-#include "communication/abstract_client.h"
-#include "communication/abstract_sender.h"
-#include "projections/projection_params.h"
-#include "utils/radians.h"
-#include "utils/cloud.h"
+#include "depth_clustering/communication/abstract_client.h"
+#include "depth_clustering/communication/abstract_sender.h"
+#include "depth_clustering/projections/projection_params.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/cloud.h"
 
 namespace depth_clustering {
 

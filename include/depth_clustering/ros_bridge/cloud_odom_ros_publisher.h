@@ -29,13 +29,13 @@
 
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
-#include "communication/abstract_client.h"
-#include "communication/abstract_sender.h"
-#include "projections/projection_params.h"
+#include "depth_clustering/communication/abstract_client.h"
+#include "depth_clustering/communication/abstract_sender.h"
+#include "depth_clustering/projections/projection_params.h"
 #include <unordered_map>
 #include <pcl/point_cloud.h>
-#include "utils/radians.h"
-#include "utils/cloud.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/cloud.h"
 #include <pcl_conversions/pcl_conversions.h>
 namespace depth_clustering {
 

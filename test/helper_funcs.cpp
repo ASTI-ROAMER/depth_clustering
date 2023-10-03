@@ -21,8 +21,8 @@
 #include "./helper_funcs.h"
 #include <math.h>
 
-#include "utils/radians.h"
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
 using depth_clustering::Pose;
 using depth_clustering::Cloud;

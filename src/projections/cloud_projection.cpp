@@ -18,11 +18,11 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "projections/cloud_projection.h"
+#include "depth_clustering/projections/cloud_projection.h"
 #include <string>
 #include <vector>
 
-#include "utils/mem_utils.h"
+#include "depth_clustering/utils/mem_utils.h"
 
 namespace depth_clustering {
 

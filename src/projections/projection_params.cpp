@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "projections/projection_params.h"
+#include "depth_clustering/projections/projection_params.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
@@ -28,7 +28,7 @@
 #include <string>
 #include <vector>
 
-#include "utils/mem_utils.h"
+#include "depth_clustering/utils/mem_utils.h"
 
 namespace depth_clustering {
 

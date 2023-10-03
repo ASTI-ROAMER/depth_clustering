@@ -21,8 +21,8 @@
 #include <gtest/gtest.h>
 #include <Eigen/Core>
 #include <string>
-#include "communication/identifiable.h"
-#include "utils/pose.h"
+#include "depth_clustering/communication/identifiable.h"
+#include "depth_clustering/utils/pose.h"
 
 using std::string;
 

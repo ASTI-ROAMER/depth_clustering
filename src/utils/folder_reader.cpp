@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "utils/folder_reader.h"
+#include "depth_clustering/utils/folder_reader.h"
 
 #include <algorithm>
 #include <string>

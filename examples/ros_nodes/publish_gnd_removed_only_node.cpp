@@ -19,16 +19,16 @@
 
 #include <string>
 
-#include "ros_bridge/cloud_odom_ros_subscriber.h"
-#include "ros_bridge/cloud_odom_ros_publisher.h"
+#include "depth_clustering/ros_bridge/cloud_odom_ros_subscriber.h"
+#include "depth_clustering/ros_bridge/cloud_odom_ros_publisher.h"
 
-#include "clusterers/image_based_clusterer.h"
-#include "ground_removal/depth_ground_remover.h"
-#include "projections/ring_projection.h"
-#include "projections/spherical_projection.h"
-#include "utils/radians.h"
+#include "depth_clustering/clusterers/image_based_clusterer.h"
+#include "depth_clustering/ground_removal/depth_ground_remover.h"
+#include "depth_clustering/projections/ring_projection.h"
+#include "depth_clustering/projections/spherical_projection.h"
+#include "depth_clustering/utils/radians.h"
 
-#include "tclap/CmdLine.h"
+#include "depth_clustering/tclap/CmdLine.h"
 
 using std::string;
 
@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
 
   subscriber.AddClient(&depth_ground_remover); 
   depth_ground_remover.AddClient(&clusterer);
-  depth_ground_remover.AddClient(&publisher);
+  // depth_ground_remover.AddClient(&publisher);
   //  clusterer.AddClient(visualizer.object_clouds_client());
   clusterer.AddClient(&publisher);
   //  subscriber.AddClient(&visualizer);

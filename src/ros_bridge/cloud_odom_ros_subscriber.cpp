@@ -18,14 +18,14 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "ros_bridge/cloud_odom_ros_subscriber.h"
+#include "depth_clustering/ros_bridge/cloud_odom_ros_subscriber.h"
 #include <eigen_conversions/eigen_msg.h>
 
 #include <vector>
 #include <string>
 #include <algorithm>
 
-#include "utils/pose.h"
+#include "depth_clustering/utils/pose.h"
 
 ros::Time stamps_sub;
 

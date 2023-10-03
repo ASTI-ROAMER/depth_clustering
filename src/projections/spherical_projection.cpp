@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "projections/spherical_projection.h"
+#include "depth_clustering/projections/spherical_projection.h"
 
 #include <vector>
 

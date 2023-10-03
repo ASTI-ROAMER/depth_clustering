@@ -24,16 +24,16 @@
 
 #include <string>
 
-#include "ros_bridge/cloud_odom_ros_subscriber.h"
+#include "depth_clustering/ros_bridge/cloud_odom_ros_subscriber.h"
 
-#include "clusterers/image_based_clusterer.h"
-#include "ground_removal/depth_ground_remover.h"
-#include "projections/ring_projection.h"
-#include "projections/spherical_projection.h"
-#include "utils/radians.h"
-#include "visualization/visualizer.h"
+#include "depth_clustering/clusterers/image_based_clusterer.h"
+#include "depth_clustering/ground_removal/depth_ground_remover.h"
+#include "depth_clustering/projections/ring_projection.h"
+#include "depth_clustering/projections/spherical_projection.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/visualization/visualizer.h"
 
-#include "tclap/CmdLine.h"
+#include "depth_clustering/tclap/CmdLine.h"
 
 using std::string;
 

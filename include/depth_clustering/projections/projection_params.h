@@ -25,8 +25,8 @@
 #include <string>
 #include <vector>
 
-#include "utils/radians.h"
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
 namespace depth_clustering {
 

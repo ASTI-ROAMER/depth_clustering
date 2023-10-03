@@ -24,8 +24,8 @@
 #include <string>
 #include <vector>
 
-#include "image_labelers/dijkstra_image_labeler.h"
-#include "image_labelers/linear_image_labeler.h"
+#include "depth_clustering/image_labelers/dijkstra_image_labeler.h"
+#include "depth_clustering/image_labelers/linear_image_labeler.h"
 
 using std::string;
 using std::vector;

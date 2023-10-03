@@ -18,11 +18,11 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "qt/utils/utils.h"
+#include "depth_clustering/qt/utils/utils.h"
 
-#include <projections/projection_params.h>
-#include <utils/folder_reader.h>
-#include <utils/velodyne_utils.h>
+#include "depth_clustering/projections/projection_params.h"
+#include "depth_clustering/utils/folder_reader.h"
+#include "depth_clustering/utils/velodyne_utils.h"
 
 #if PCL_FOUND
 #include <pcl/io/pcd_io.h>

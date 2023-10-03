@@ -23,8 +23,8 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "image_labelers/pixel_coords.h"
-#include "projections/projection_params.h"
+#include "depth_clustering/image_labelers/pixel_coords.h"
+#include "depth_clustering/projections/projection_params.h"
 
 namespace depth_clustering {
 

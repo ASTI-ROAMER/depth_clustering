@@ -18,9 +18,58 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "utils/cloud.h"
+#include "depth_clustering/utils/cloud.h"
 
 namespace depth_clustering {
+
+template <class T>
+T BytesTo(const std::vector<uint8_t>& data, uint32_t start_idx) {
+  const size_t kNumberOfBytes = sizeof(T);
+  uint8_t byte_array[kNumberOfBytes];
+  // forward bit order (it is a HACK. We do not account for bigendianes)
+  for (size_t i = 0; i < kNumberOfBytes; ++i) {
+    byte_array[i] = data[start_idx + i];
+  }
+  T result;
+  std::copy(reinterpret_cast<const uint8_t*>(&byte_array[0]),
+            reinterpret_cast<const uint8_t*>(&byte_array[kNumberOfBytes]),
+            reinterpret_cast<uint8_t*>(&result));
+  return result;
+}
+
+// void ImageToPcl2(const std::unordered_map<uint16_t, Cloud>& clouds, sensor_msgs::PointCloud2& pcl2_msg)
+// {
+//   int i = 0;
+//   PointCloudT pcl1_cloud;
+//   for(const auto& kv: clouds){
+//     const auto& cluster = kv.second;
+//     PointCloudT pcl_temp;
+    
+//     PointT min_p;
+//     PointT max_p;
+//     for (const auto& point : cluster.points()) {
+//         PointT p;
+//         p.x = point.x();
+//         p.y = point.y();
+//         p.z = point.z();
+//         p.label = i;
+//         pcl_temp.push_back(p);
+//     }
+//     pcl::getMinMax3D(pcl_temp, min_p, max_p);
+
+//     double dif_x = max_p.x-min_p.x;
+//     double dif_y = max_p.y-min_p.y;
+//     double dif_z = max_p.z-min_p.z;
+
+//     if((dif_x)*(dif_y)<5 || (dif_x*dif_x + dif_y*dif_y + dif_z*dif_z)<3 )
+//     {
+//         pcl1_cloud+=pcl_temp;
+//         i++;
+//     }
+//   }
+// //   sensor_msgs::PointCloud2 cloud2;
+//   pcl::toROSMsg(pcl1_cloud, pcl2_msg);
+// }
 
 Cloud::Cloud(const Cloud& cloud)
     : _points{cloud.points()},
@@ -33,6 +82,43 @@ Cloud::Cloud(const Cloud& cloud)
   // projection is a polymorphic type, we use clone therefore
   auto ptr = cloud.projection_ptr()->Clone();
   _projection = ptr;
+}
+
+Cloud::Cloud(const sensor_msgs::PointCloud2& pcl2_msg): 
+        _points{}, _pose{}, _sensor_pose{}
+{
+  uint32_t x_offset = pcl2_msg.fields[0].offset;
+  uint32_t y_offset = pcl2_msg.fields[1].offset;
+  uint32_t z_offset = pcl2_msg.fields[2].offset;
+  uint32_t ring_offset = pcl2_msg.fields[4].offset;
+
+  for (uint32_t point_start_byte = 0, counter = 0;
+       point_start_byte < pcl2_msg.data.size();
+       point_start_byte += pcl2_msg.point_step, ++counter) {
+    RichPoint point;
+    point.x() = BytesTo<float>(pcl2_msg.data, point_start_byte + x_offset);
+    point.y() = BytesTo<float>(pcl2_msg.data, point_start_byte + y_offset);
+    point.z() = BytesTo<float>(pcl2_msg.data, point_start_byte + z_offset);
+    point.ring() = BytesTo<uint16_t>(pcl2_msg.data, point_start_byte + ring_offset);
+    // point.z *= -1;  // hack
+    // _points.push_back(point);
+  }
+
+}
+
+Cloud& Cloud::operator=(const Cloud& other)
+{
+  _points = other.points();
+  _pose = other.pose();
+  _sensor_pose = other.sensor_pose();
+  if (!other.projection_ptr()) {
+    // no need to copy projection, there is none yet
+    return *this;
+  }
+  // projection is a polymorphic type, we use clone therefore
+  auto ptr = other.projection_ptr()->Clone();
+  _projection = ptr;
+  return *this;
 }
 
 std::list<const RichPoint*> Cloud::PointsProjectedToPixel(int row,

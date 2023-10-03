@@ -26,7 +26,7 @@
 #include <algorithm>
 #include <limits>
 
-#include "utils/cloud.h"
+#include "depth_clustering/utils/cloud.h"
 
 namespace dc = depth_clustering;
 

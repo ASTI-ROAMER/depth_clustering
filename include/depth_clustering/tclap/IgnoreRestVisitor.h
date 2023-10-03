@@ -23,8 +23,8 @@
 #ifndef TCLAP_IGNORE_REST_VISITOR_H
 #define TCLAP_IGNORE_REST_VISITOR_H
 
-#include <tclap/Visitor.h>
-#include <tclap/Arg.h>
+#include <depth_clustering/tclap/Visitor.h>
+#include <depth_clustering/tclap/Arg.h>
 
 namespace TCLAP {
 

@@ -25,7 +25,7 @@
 #include <Eigen/Geometry>
 #include <cassert>
 
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
 namespace depth_clustering {
 

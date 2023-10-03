@@ -27,9 +27,9 @@
 #include <QPixmap>
 #include <QUuid>
 
-#include <utils/folder_reader.h>
-#include <utils/timer.h>
-#include <utils/velodyne_utils.h>
+#include <depth_clustering/utils/folder_reader.h>
+#include <depth_clustering/utils/timer.h>
+#include <depth_clustering/utils/velodyne_utils.h>
 
 #if PCL_FOUND
 #include <pcl/io/pcd_io.h>
@@ -38,14 +38,14 @@
 
 #include <vector>
 
-#include "qt/drawables/drawable_cloud.h"
-#include "qt/drawables/drawable_cube.h"
-#include "qt/drawables/object_painter.h"
-#include "qt/utils/utils.h"
+#include "depth_clustering/qt/drawables/drawable_cloud.h"
+#include "depth_clustering/qt/drawables/drawable_cube.h"
+#include "depth_clustering/qt/drawables/object_painter.h"
+#include "depth_clustering/qt/utils/utils.h"
 
 #include "qt/widgets/ui_opengl_folder_player.h"
 
-#include "image_labelers/diff_helpers/diff_factory.h"
+#include "depth_clustering/image_labelers/diff_helpers/diff_factory.h"
 
 using depth_clustering::AbstractImageLabeler;
 using depth_clustering::AngleDiffPrecomputed;

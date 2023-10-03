@@ -25,20 +25,20 @@
 #include <string>
 #include <thread>
 
-#include "clusterers/image_based_clusterer.h"
-#include "image_labelers/diff_helpers/diff_factory.h"
+#include "depth_clustering/clusterers/image_based_clusterer.h"
+#include "depth_clustering/image_labelers/diff_helpers/diff_factory.h"
 
-#include "ground_removal/depth_ground_remover.h"
-#include "projections/projection_params.h"
-#include "qt/drawables/drawable_cloud.h"
-#include "qt/drawables/object_painter.h"
-#include "utils/cloud.h"
-#include "utils/folder_reader.h"
-#include "utils/radians.h"
-#include "utils/timer.h"
-#include "utils/velodyne_utils.h"
+#include "depth_clustering/ground_removal/depth_ground_remover.h"
+#include "depth_clustering/projections/projection_params.h"
+#include "depth_clustering/qt/drawables/drawable_cloud.h"
+#include "depth_clustering/qt/drawables/object_painter.h"
+#include "depth_clustering/utils/cloud.h"
+#include "depth_clustering/utils/folder_reader.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/timer.h"
+#include "depth_clustering/utils/velodyne_utils.h"
 
-#include "tclap/CmdLine.h"
+#include "depth_clustering/tclap/CmdLine.h"
 
 using std::string;
 

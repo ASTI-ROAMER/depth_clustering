@@ -29,9 +29,9 @@
 #include <string>
 #include <vector>
 
-#include "image_labelers/diff_helpers/diff_factory.h"
-#include "projections/projection_params.h"
-#include "utils/radians.h"
+#include "depth_clustering/image_labelers/diff_helpers/diff_factory.h"
+#include "depth_clustering/projections/projection_params.h"
+#include "depth_clustering/utils/radians.h"
 
 namespace depth_clustering {
 

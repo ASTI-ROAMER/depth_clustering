@@ -33,10 +33,10 @@
 #include <string>
 #include <map>
 
-#include "communication/abstract_sender.h"
-#include "utils/pose.h"
-#include "utils/cloud.h"
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/communication/abstract_sender.h"
+#include "depth_clustering/utils/pose.h"
+#include "depth_clustering/utils/cloud.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
 extern ros::Time stamps_sub; //https://stackoverflow.com/questions/9702053/how-to-declare-a-global-variable-in-c
 

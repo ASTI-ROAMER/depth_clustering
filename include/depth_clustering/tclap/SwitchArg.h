@@ -27,7 +27,7 @@
 #include <string>
 #include <vector>
 
-#include <tclap/Arg.h>
+#include <depth_clustering/tclap/Arg.h>
 
 namespace TCLAP {
 

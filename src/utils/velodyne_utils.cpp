@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "utils/velodyne_utils.h"
+#include "depth_clustering/utils/velodyne_utils.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/predicate.hpp>
@@ -31,7 +31,7 @@
 #include <string>
 #include <vector>
 
-#include "utils/cloud.h"
+#include "depth_clustering/utils/cloud.h"
 
 namespace depth_clustering {
 

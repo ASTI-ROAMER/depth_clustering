@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "visualization/cloud_saver.h"
+#include "depth_clustering/visualization/cloud_saver.h"
 
 #include <string>
 

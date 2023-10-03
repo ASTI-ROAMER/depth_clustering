@@ -23,7 +23,7 @@
 #include <limits>
 #include <vector>
 
-#include "image_labelers/diff_helpers/line_dist_diff.h"
+#include "depth_clustering/image_labelers/diff_helpers/line_dist_diff.h"
 
 using namespace depth_clustering;
 using namespace cv;

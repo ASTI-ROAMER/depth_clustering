@@ -28,7 +28,7 @@
 #include <string>
 
 #include <opencv2/opencv.hpp>
-#include <utils/cloud.h>
+#include <depth_clustering/utils/cloud.h>
 
 namespace dc = depth_clustering;
 

@@ -25,9 +25,9 @@
 
 #include <vector>
 
-#include "projections/cloud_projection.h"
-#include "projections/projection_params.h"
-#include "utils/cloud.h"
+#include "depth_clustering/projections/cloud_projection.h"
+#include "depth_clustering/projections/projection_params.h"
+#include "depth_clustering/utils/cloud.h"
 
 namespace depth_clustering {
 

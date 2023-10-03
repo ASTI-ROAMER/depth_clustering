@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License along
 // with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "ros_bridge/cloud_odom_ros_publisher.h"
-#include "ros_bridge/cloud_odom_ros_subscriber.h" //get extern time
+#include "depth_clustering/ros_bridge/cloud_odom_ros_publisher.h"
+#include "depth_clustering/ros_bridge/cloud_odom_ros_subscriber.h" //get extern time
 
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/highgui.hpp>
@@ -29,11 +29,11 @@
 #include <memory>
 #include <cmath>
 
-#include "image_labelers/diff_helpers/angle_diff.h"
-#include "image_labelers/diff_helpers/simple_diff.h"
-#include "image_labelers/linear_image_labeler.h"
-#include "utils/timer.h"
-#include "utils/velodyne_utils.h"
+#include "depth_clustering/image_labelers/diff_helpers/angle_diff.h"
+#include "depth_clustering/image_labelers/diff_helpers/simple_diff.h"
+#include "depth_clustering/image_labelers/linear_image_labeler.h"
+#include "depth_clustering/utils/timer.h"
+#include "depth_clustering/utils/velodyne_utils.h"
 #include "pcl/common/common.h"
 
 #include <ros/console.h>

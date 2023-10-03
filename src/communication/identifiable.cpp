@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "communication/identifiable.h"
+#include "depth_clustering/communication/identifiable.h"
 #include <string>
 
 namespace depth_clustering {

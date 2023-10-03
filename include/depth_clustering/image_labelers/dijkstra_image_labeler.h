@@ -28,8 +28,8 @@
 #include <queue>
 #include <algorithm>
 
-#include "image_labelers/abstract_image_labeler.h"
-#include "projections/projection_params.h"
+#include "depth_clustering/image_labelers/abstract_image_labeler.h"
+#include "depth_clustering/projections/projection_params.h"
 
 namespace depth_clustering {
 

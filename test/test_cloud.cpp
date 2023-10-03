@@ -23,9 +23,9 @@
 
 #include <limits>
 
-#include "utils/cloud.h"
-#include "utils/pose.h"
-#include "utils/rich_point.h"
+#include "depth_clustering/utils/cloud.h"
+#include "depth_clustering/utils/pose.h"
+#include "depth_clustering/utils/rich_point.h"
 
 using Eigen::Vector3f;
 

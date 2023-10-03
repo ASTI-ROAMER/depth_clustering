@@ -2,7 +2,7 @@
 //
 // GNU-GPL licence that follows one of libQGLViewer.
 
-#include "visualization/visualizer.h"
+#include "depth_clustering/visualization/visualizer.h"
 
 #include <algorithm>
 #include <chrono>

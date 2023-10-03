@@ -31,11 +31,11 @@
 #include <stdexcept>
 #include <vector>
 
-#include "projections/projection_params.h"
+#include "depth_clustering/projections/projection_params.h"
 
-#include "utils/radians.h"
-#include "utils/rich_point.h"
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/rich_point.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
 namespace depth_clustering {
 

@@ -21,13 +21,13 @@
 #ifndef SRC_QT_DRAWABLES_OBJECT_PAINTER_H_
 #define SRC_QT_DRAWABLES_OBJECT_PAINTER_H_
 
-#include "communication/abstract_client.h"
-#include "qt/drawables/drawable_cube.h"
-#include "qt/drawables/drawable_polygon3d.h"
-#include "qt/viewer/viewer.h"
+#include "depth_clustering/communication/abstract_client.h"
+#include "depth_clustering/qt/drawables/drawable_cube.h"
+#include "depth_clustering/qt/drawables/drawable_polygon3d.h"
+#include "depth_clustering/qt/viewer/viewer.h"
 
-#include <utils/cloud.h>
-#include <utils/timer.h>
+#include "depth_clustering/utils/cloud.h"
+#include "depth_clustering/utils/timer.h"
 
 #include <algorithm>
 #include <limits>

@@ -24,7 +24,7 @@
 #include <queue>
 #include <unordered_map>
 
-#include "image_labelers/pixel_coords.h"
+#include "depth_clustering/image_labelers/pixel_coords.h"
 
 namespace depth_clustering {
 

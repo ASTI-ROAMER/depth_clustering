@@ -21,9 +21,9 @@
 #ifndef SRC_TEST_HELPER_FUNCS_H_
 #define SRC_TEST_HELPER_FUNCS_H_
 
-#include "utils/cloud.h"
-#include "utils/radians.h"
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/utils/cloud.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
 namespace ds = depth_clustering;
 

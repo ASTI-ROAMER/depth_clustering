@@ -21,7 +21,7 @@
 #ifndef SRC_COMMUNICATION_ABSTRACT_CLIENT_H_
 #define SRC_COMMUNICATION_ABSTRACT_CLIENT_H_
 
-#include "communication/identifiable.h"
+#include "depth_clustering/communication/identifiable.h"
 
 namespace depth_clustering {
 

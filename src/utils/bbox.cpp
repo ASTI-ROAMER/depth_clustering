@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "utils/bbox.h"
+#include "depth_clustering/utils/bbox.h"
 
 #include <algorithm>
 

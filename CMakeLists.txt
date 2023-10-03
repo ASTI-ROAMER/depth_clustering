@@ -175,7 +175,7 @@ catkin_package(
 include_directories(
   # for qt/widgets headers, for QT moc
   src
-  include/${PROJECT_NAME}
+  include
   # for QT moc files
   ${PROJECT_BINARY_DIR}/src
   # dependencies we have no control over

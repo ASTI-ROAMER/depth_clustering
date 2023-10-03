@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "utils/pose.h"
+#include "depth_clustering/utils/pose.h"
 #include <Eigen/Core>
 #include <gtest/gtest.h>
 

@@ -21,7 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "cmake_config.h"
-#include "projections/projection_params.h"
+#include "depth_clustering/projections/projection_params.h"
 
 using namespace depth_clustering;
 

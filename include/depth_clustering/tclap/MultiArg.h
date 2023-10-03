@@ -26,8 +26,8 @@
 #include <string>
 #include <vector>
 
-#include <tclap/Arg.h>
-#include <tclap/Constraint.h>
+#include <depth_clustering/tclap/Arg.h>
+#include <depth_clustering/tclap/Constraint.h>
 
 namespace TCLAP {
 /**

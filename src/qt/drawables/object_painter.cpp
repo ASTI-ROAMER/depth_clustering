@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "qt/drawables/object_painter.h"
+#include "depth_clustering/qt/drawables/object_painter.h"
 
 namespace depth_clustering {
 

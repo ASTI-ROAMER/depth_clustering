@@ -18,17 +18,17 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "./depth_ground_remover.h"
+#include "depth_clustering/ground_removal/depth_ground_remover.h"
 
 #include <opencv2/highgui/highgui_c.h>
 
 #include <algorithm>
 
-#include "image_labelers/diff_helpers/angle_diff.h"
-#include "image_labelers/diff_helpers/simple_diff.h"
-#include "image_labelers/linear_image_labeler.h"
-#include "utils/timer.h"
-#include "utils/velodyne_utils.h"
+#include "depth_clustering/image_labelers/diff_helpers/angle_diff.h"
+#include "depth_clustering/image_labelers/diff_helpers/simple_diff.h"
+#include "depth_clustering/image_labelers/linear_image_labeler.h"
+#include "depth_clustering/utils/timer.h"
+#include "depth_clustering/utils/velodyne_utils.h"
 
 namespace depth_clustering {
 
@@ -58,6 +58,27 @@ void DepthGroundRemover::OnNewObjectReceived(const Cloud& cloud, const int) {
   fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
   cloud_copy.projection_ptr()->depth_image() = no_ground_image;
   this->ShareDataWithAllClients(cloud_copy);
+  _counter++;
+}
+
+void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
+  // this can be done even faster if we switch to column-major implementation
+  // thus allowing us to load whole row in L1 cache
+  if (!cloud_in.projection_ptr()) {
+    fprintf(stderr, "No projection in cloud. Skipping ground removal.\n");
+    return;
+  }
+//   Cloud cloud_out(cloud_in);
+  const cv::Mat& depth_image =
+      RepairDepth(cloud_in.projection_ptr()->depth_image(), 5, 1.0f);
+  Timer total_timer;
+  auto angle_image = CreateAngleImage(depth_image);
+  auto smoothed_image = ApplySavitskyGolaySmoothing(angle_image, _window_size);
+  auto no_ground_image = ZeroOutGroundBFS(depth_image, smoothed_image,
+                                          _ground_remove_angle, _window_size);
+  fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
+  cloud_out.projection_ptr()->depth_image() = no_ground_image;
+//   this->ShareDataWithAllClients(cloud_copy);
   _counter++;
 }
 

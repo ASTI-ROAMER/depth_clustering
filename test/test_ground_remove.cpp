@@ -22,7 +22,7 @@
 
 #include <limits>
 #include <string>
-#include "ground_removal/depth_ground_remover.h"
+#include "depth_clustering/ground_removal/depth_ground_remover.h"
 
 using namespace depth_clustering;
 

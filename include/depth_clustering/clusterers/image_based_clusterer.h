@@ -29,17 +29,17 @@
 #include <unordered_map>
 #include <vector>
 
-#include "communication/abstract_client.h"
-#include "communication/abstract_sender.h"
-#include "utils/cloud.h"
-#include "utils/radians.h"
-#include "utils/timer.h"
-#include "utils/useful_typedefs.h"
+#include "depth_clustering/communication/abstract_client.h"
+#include "depth_clustering/communication/abstract_sender.h"
+#include "depth_clustering/utils/cloud.h"
+#include "depth_clustering/utils/radians.h"
+#include "depth_clustering/utils/timer.h"
+#include "depth_clustering/utils/useful_typedefs.h"
 
-#include "clusterers/abstract_clusterer.h"
-#include "image_labelers/diff_helpers/diff_factory.h"
-#include "image_labelers/linear_image_labeler.h"
-#include "projections/cloud_projection.h"
+#include "depth_clustering/clusterers/abstract_clusterer.h"
+#include "depth_clustering/image_labelers/diff_helpers/diff_factory.h"
+#include "depth_clustering/image_labelers/linear_image_labeler.h"
+#include "depth_clustering/projections/cloud_projection.h"
 
 namespace depth_clustering {
 

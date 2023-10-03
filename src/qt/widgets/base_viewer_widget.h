@@ -21,7 +21,7 @@
 #pragma once
 
 #include <QWidget>
-#include "qt/viewer/viewer.h"
+#include "depth_clustering/qt/viewer/viewer.h"
 
 class BaseViewerWidget : public QWidget {
   Q_OBJECT

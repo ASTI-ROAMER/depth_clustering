@@ -26,8 +26,8 @@
 #include <typeinfo>
 #include <memory>
 
-#include "communication/identifiable.h"
-#include "communication/abstract_client.h"
+#include "depth_clustering/communication/identifiable.h"
+#include "depth_clustering/communication/abstract_client.h"
 
 namespace depth_clustering {
 

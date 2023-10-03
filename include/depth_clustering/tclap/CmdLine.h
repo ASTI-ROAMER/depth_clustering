@@ -24,21 +24,21 @@
 #ifndef TCLAP_CMDLINE_H
 #define TCLAP_CMDLINE_H
 
-#include <tclap/SwitchArg.h>
-#include <tclap/MultiSwitchArg.h>
-#include <tclap/UnlabeledValueArg.h>
-#include <tclap/UnlabeledMultiArg.h>
+#include <depth_clustering/tclap/SwitchArg.h>
+#include <depth_clustering/tclap/MultiSwitchArg.h>
+#include <depth_clustering/tclap/UnlabeledValueArg.h>
+#include <depth_clustering/tclap/UnlabeledMultiArg.h>
 
-#include <tclap/XorHandler.h>
-#include <tclap/HelpVisitor.h>
-#include <tclap/VersionVisitor.h>
-#include <tclap/IgnoreRestVisitor.h>
+#include <depth_clustering/tclap/XorHandler.h>
+#include <depth_clustering/tclap/HelpVisitor.h>
+#include <depth_clustering/tclap/VersionVisitor.h>
+#include <depth_clustering/tclap/IgnoreRestVisitor.h>
 
-#include <tclap/CmdLineOutput.h>
-#include <tclap/StdOutput.h>
+#include <depth_clustering/tclap/CmdLineOutput.h>
+#include <depth_clustering/tclap/StdOutput.h>
 
-#include <tclap/Constraint.h>
-#include <tclap/ValuesConstraint.h>
+#include <depth_clustering/tclap/Constraint.h>
+#include <depth_clustering/tclap/ValuesConstraint.h>
 
 #include <string>
 #include <vector>

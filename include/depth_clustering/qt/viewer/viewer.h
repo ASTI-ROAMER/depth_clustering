@@ -10,7 +10,7 @@
 #include <mutex>
 #include <vector>
 
-#include "qt/drawables/drawable.h"
+#include "depth_clustering/qt/drawables/drawable.h"
 
 class Viewer : public QGLViewer {
  public:

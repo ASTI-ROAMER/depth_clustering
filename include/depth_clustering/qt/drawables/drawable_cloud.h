@@ -20,8 +20,8 @@
 
 #pragma once
 
-#include "qt/drawables/drawable.h"
-#include "utils/cloud.h"
+#include "depth_clustering/qt/drawables/drawable.h"
+#include "depth_clustering/utils/cloud.h"
 
 class DrawableCloud : public Drawable {
  public:

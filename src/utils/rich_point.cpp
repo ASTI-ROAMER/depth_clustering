@@ -18,7 +18,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-#include "utils/rich_point.h"
+#include "depth_clustering/utils/rich_point.h"
 
 namespace depth_clustering {
 

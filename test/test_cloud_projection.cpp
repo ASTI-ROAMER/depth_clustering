@@ -23,10 +23,10 @@
 
 #include <string>
 
-#include "projections/cloud_projection.h"
-#include "projections/spherical_projection.h"
-#include "utils/cloud.h"
-#include "utils/radians.h"
+#include "depth_clustering/projections/cloud_projection.h"
+#include "depth_clustering/projections/spherical_projection.h"
+#include "depth_clustering/utils/cloud.h"
+#include "depth_clustering/utils/radians.h"
 
 using cv::Mat;
 

@@ -23,8 +23,8 @@
 
 #include <Eigen/Core>
 
-#include "qt/drawables/drawable.h"
-#include "utils/mem_utils.h"
+#include "depth_clustering/qt/drawables/drawable.h"
+#include "depth_clustering/utils/mem_utils.h"
 
 namespace depth_clustering {
 

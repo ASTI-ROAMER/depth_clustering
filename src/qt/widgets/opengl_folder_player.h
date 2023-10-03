@@ -27,19 +27,19 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "qt/drawables/object_painter.h"
-#include "qt/viewer/viewer.h"
+#include "depth_clustering/qt/drawables/object_painter.h"
+#include "depth_clustering/qt/viewer/viewer.h"
 #include "qt/widgets/base_viewer_widget.h"
 #include <memory>
 #include <string>
 #include <vector>
 
-#include "clusterers/image_based_clusterer.h"
-#include "communication/abstract_client.h"
-#include "ground_removal/depth_ground_remover.h"
-#include "projections/cloud_projection.h"
-#include "projections/spherical_projection.h"
-#include "utils/cloud.h"
+#include "depth_clustering/clusterers/image_based_clusterer.h"
+#include "depth_clustering/communication/abstract_client.h"
+#include "depth_clustering/ground_removal/depth_ground_remover.h"
+#include "depth_clustering/projections/cloud_projection.h"
+#include "depth_clustering/projections/spherical_projection.h"
+#include "depth_clustering/utils/cloud.h"
 
 namespace Ui {
 class OpenGlFolderPlayer;

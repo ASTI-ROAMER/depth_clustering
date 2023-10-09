@@ -317,4 +317,9 @@ void ProjectionParams::FillCosSin() {
   }
 }
 
+// void ProjectionParams::PrintCosSin0() {
+//     fprintf(stderr, "------- RANDEL cos[%lu] = %f, sin[%lu] = %f\n", _row_angles_cosines.size(), _row_angles_cosines[0], 
+//                                     _row_angles_sines.size(), _row_angles_sines[0]);
+// }
+
 }  // namespace depth_clustering

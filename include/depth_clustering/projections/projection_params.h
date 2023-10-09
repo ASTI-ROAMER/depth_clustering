@@ -84,6 +84,8 @@ class ProjectionParams {
   ProjectionParams() {}
   ~ProjectionParams() {}
 
+//   void PrintCosSin0();
+
   /**
    * @brief      Set the angle span in a given direction.
    *

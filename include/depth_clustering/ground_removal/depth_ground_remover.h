@@ -47,6 +47,7 @@ class DepthGroundRemover : public AbstractClient<Cloud>,
   using SenderT = AbstractSender<Cloud>;
 
  public:
+//   DepthGroundRemover() = default;
   explicit DepthGroundRemover(const ProjectionParams& params,
                               const Radians& ground_remove_angle,
                               int window_size = 5)
@@ -57,6 +58,7 @@ class DepthGroundRemover : public AbstractClient<Cloud>,
         _ground_remove_angle{ground_remove_angle} {}
   virtual ~DepthGroundRemover() {}
 
+//   void PrintProj();
   /**
    * @brief      when someone sends us an object we process it
    * @details    receiving a depth image we remove ground from it and send to

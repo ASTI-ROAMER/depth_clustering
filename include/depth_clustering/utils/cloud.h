@@ -25,10 +25,10 @@
 #include <Eigen/StdVector>
 
 // #define PCL_FOUND 1
-#if PCL_FOUND
+// #if PCL_FOUND
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
-#endif  // PCL_FOUND
+// #endif  // PCL_FOUND
 
 #include <algorithm>
 #include <list>
@@ -109,7 +109,7 @@ class Cloud {
   // void ImageToPcl2(const std::unordered_map<uint16_t, Cloud>& clouds, sensor_msgs::PointCloud2& pcl2_msg);
 
 // PCL specific part
-#if PCL_FOUND
+// #if PCL_FOUND
   typename pcl::PointCloud<pcl::PointXYZL>::Ptr ToPcl() const;
 
   template <class PointT>
@@ -121,7 +121,7 @@ class Cloud {
     }
     return make_shared<Cloud>(cloud);
   }
-#endif  // PCL_FOUND
+// #endif  // PCL_FOUND
 
  protected:
   RichPoint::AlignedVector _points;

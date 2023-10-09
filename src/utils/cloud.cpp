@@ -101,7 +101,7 @@ Cloud::Cloud(const sensor_msgs::PointCloud2& pcl2_msg):
     point.z() = BytesTo<float>(pcl2_msg.data, point_start_byte + z_offset);
     point.ring() = BytesTo<uint16_t>(pcl2_msg.data, point_start_byte + ring_offset);
     // point.z *= -1;  // hack
-    // _points.push_back(point);
+    _points.push_back(point);
   }
 
 }
@@ -186,7 +186,7 @@ Cloud::Ptr Cloud::FromImage(const cv::Mat& image,
 }
 
 // this code will be only there if we use pcl
-#ifdef PCL_FOUND
+// #ifdef PCL_FOUND
 
 typename pcl::PointCloud<pcl::PointXYZL>::Ptr Cloud::ToPcl() const {
   using pcl::PointXYZL;
@@ -214,6 +214,6 @@ Cloud::Ptr Cloud::FromPcl(const pcl::PointCloud<pcl::PointXYZL>& pcl_cloud) {
   return make_shared<Cloud>(cloud);
 }
 
-#endif  // PCL_FOUND
+// #endif  // PCL_FOUND
 
 }  // namespace depth_clustering

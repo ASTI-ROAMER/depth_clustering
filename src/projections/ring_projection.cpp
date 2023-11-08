@@ -41,12 +41,17 @@ void RingProjection::InitFromPoints(const RichPoint::AlignedVector& points) {
     size_t bin_cols = _params.ColFromAngle(angle_cols);
     size_t bin_rows = point.ring();
     // adding point pointer
-    this->_data[bin_cols][bin_rows].points().push_back(index);
+    // this->_data[bin_cols][bin_rows].points().push_back(index);
     auto& current_written_depth =
         this->_depth_image.at<float>(bin_rows, bin_cols);
     if (current_written_depth < dist_to_sensor) {
       // write this point to the image only if it is closer
       current_written_depth = dist_to_sensor;
+      if(this->at(bin_rows, bin_cols).points().empty()){
+        this->at(bin_rows, bin_cols).points().push_back(index);
+      } else {
+        this->at(bin_rows, bin_cols).points().front() = index;
+      }
     }
   }
   fprintf(stderr, "Cloud projected in %lu us\n", timer.measure());

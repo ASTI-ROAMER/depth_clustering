@@ -105,6 +105,7 @@ class Cloud {
 
   static Cloud::Ptr FromImage(const cv::Mat& image,
                               const ProjectionParams& params);
+  void InitFromImage(const cv::Mat& image, const Cloud& cloud_in);
 
   // void ImageToPcl2(const std::unordered_map<uint16_t, Cloud>& clouds, sensor_msgs::PointCloud2& pcl2_msg);
 

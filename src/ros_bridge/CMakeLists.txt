@@ -19,7 +19,7 @@
 ## DEALINGS IN THE SOFTWARE.
 
 # add_library(ros_bridge SHARED cloud_odom_ros_subscriber.cpp)
-add_library(ros_bridge SHARED cloud_odom_ros_subscriber.cpp cloud_odom_ros_publisher.cpp)
+add_library(ros_bridge SHARED cloud_odom_ros_subscriber.cpp cloud_odom_ros_publisher.cpp cloud_ros_publisher.cpp)
 find_package(PCL 1.7 REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
             roscpp

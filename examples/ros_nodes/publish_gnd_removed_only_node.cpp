@@ -20,7 +20,7 @@
 #include <string>
 
 #include "depth_clustering/ros_bridge/cloud_odom_ros_subscriber.h"
-#include "depth_clustering/ros_bridge/cloud_odom_ros_publisher.h"
+#include "depth_clustering/ros_bridge/cloud_ros_publisher.h"
 
 #include "depth_clustering/clusterers/image_based_clusterer.h"
 #include "depth_clustering/ground_removal/depth_ground_remover.h"
@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
 
   //CloudOdomRosSubscriber subscriber(&nh, *proj_params_ptr, sub_topic_clouds, "", topic_pose);
   CloudOdomRosSubscriber subscriber(&nh, *proj_params_ptr, sub_topic_clouds, topic_odom, "");
-  CloudOdomRosPublisher publisher(&nh, pub_frame_id, pub_topic_clouds);
+  CloudRosPublisher publisher(&nh, pub_frame_id, pub_topic_clouds);
   
 
 
@@ -99,10 +99,10 @@ int main(int argc, char* argv[]) {
   clusterer.SetDiffType(DiffFactory::DiffType::ANGLES);
 
   subscriber.AddClient(&depth_ground_remover); 
-  depth_ground_remover.AddClient(&clusterer);
-  // depth_ground_remover.AddClient(&publisher);
+//   depth_ground_remover.AddClient(&clusterer);
+  depth_ground_remover.AddClient(&publisher);
   //  clusterer.AddClient(visualizer.object_clouds_client());
-  clusterer.AddClient(&publisher);
+//   clusterer.AddClient(&publisher);
   //  subscriber.AddClient(&visualizer);
   //  subscriber.AddClient(&clusterer);
   

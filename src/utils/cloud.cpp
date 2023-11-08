@@ -185,6 +185,25 @@ Cloud::Ptr Cloud::FromImage(const cv::Mat& image,
   return boost::make_shared<Cloud>(cloud);
 }
 
+void Cloud::InitFromImage(const cv::Mat& image, const Cloud& cloud_in) {
+  // clone just the projection from cloud
+  CloudProjection::Ptr proj_ptr = cloud_in.projection_ptr()->Clone();
+  proj_ptr->CheckImageAndStorage(image);
+  proj_ptr->CloneDepthImage(image);
+  // Cloud cloud;
+  for (int r = 0; r < image.rows; ++r) {
+    for (int c = 0; c < image.cols; ++c) {
+      if (image.at<float>(r, c) < 0.0001f) {
+        continue;
+      }
+      RichPoint point = proj_ptr->UnprojectPoint(image, r, c);
+      this->push_back(point);
+      proj_ptr->at(r, c).points().push_back(this->points().size() - 1);
+    }
+  }
+  this->SetProjectionPtr(proj_ptr);
+}
+
 // this code will be only there if we use pcl
 // #ifdef PCL_FOUND
 

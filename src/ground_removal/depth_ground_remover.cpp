@@ -57,13 +57,13 @@ void DepthGroundRemover::OnNewObjectReceived(const Cloud& cloud, const int) {
                                           _ground_remove_angle, _window_size);
   fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
   cloud_copy.projection_ptr()->depth_image() = no_ground_image;
+//   fprintf(stderr, "RANDEL: orig size: %lu copy size%lu", cloud.points().size(), cloud_copy.points().size());
   this->ShareDataWithAllClients(cloud_copy);
   _counter++;
 }
 
+
 void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
-  // this can be done even faster if we switch to column-major implementation
-  // thus allowing us to load whole row in L1 cache
   if (!cloud_in.projection_ptr()) {
     fprintf(stderr, "No projection in cloud. Skipping ground removal.\n");
     return;
@@ -77,7 +77,106 @@ void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
   auto no_ground_image = ZeroOutGroundBFS(depth_image, smoothed_image,
                                           _ground_remove_angle, _window_size);
   fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
+
+  cloud_out.SetProjectionPtr(cloud_in.projection_ptr()->Clone());
   cloud_out.projection_ptr()->depth_image() = no_ground_image;
+
+  // using point container
+  Timer ref_timer1;
+  // fprintf(stderr, "RANDEL: check=%lu\n", cloud_out.size());
+  // const cv::Mat& depth_img =  cloud_in.projection_ptr()->depth_image();      // calling it is too long
+  for (int row = 0; row < int(cloud_in.projection_ptr()->rows()); ++row) {
+      for (int col = 0; col < int(cloud_in.projection_ptr()->cols()); ++col) {
+        // depth images that are equal to 0.0 were cleared out by ZeroOutGroundBFS()
+        if (no_ground_image.at<float>(row, col) >= 0.01f){
+          // this is not un-project, this is just getting the stored points
+          const auto& point_container = cloud_in.projection_ptr()->at(row, col);
+        //   fprintf(stderr, "RANDEL: row,col=%d, %d\n", row, col);
+          
+          // // medium speed, same pcl points as unproject
+          // const size_t& idx_= point_container.projection_index_used;
+          // if (point_container.has_index){
+          //   cloud_out.push_back(cloud_in.at(idx_));
+          // }
+
+          // // trial
+          // try{
+          //   const size_t& idx_= point_container.projection_index_used;
+          //   if (point_container.has_index){
+          //     if (idx_ >= cloud_in.size())
+          //     {
+          //         throw idx_;
+          //     }
+          //     cloud_out.push_back(cloud_in.at(idx_));
+          //   }
+          // } catch (size_t idx) {
+          //   std::cerr << "************** RANDEL: WRONG INDEX: " << idx << std::endl; 
+          // }
+
+          // fastest, but has more pcl points, with changes on depth_clustering, points() will only have 1 element at most.
+          for (const auto& p_idx: point_container.points() ){
+            cloud_out.push_back(cloud_in.at(p_idx));
+          }
+        }
+      }
+  }
+  fprintf(stderr, "INFO: time to get cloud_out (copying references): %lu us\n", ref_timer1.measure());
+
+  // // count of non-0 in depth_image
+  // unsigned long _count=0;
+  // for (int row = 0; row < int(cloud_in.projection_ptr()->rows()); ++row) {
+  //     for (int col = 0; col < int(cloud_in.projection_ptr()->cols()); ++col) {
+  //       if (no_ground_image.at<float>(row, col) != 0.0){
+  //         _count++;
+  //       }
+  //     }
+  // }
+
+  fprintf(stderr, "RANDEL: orig=%lu, gnd_removed(copy)=%lu\n", cloud_in.size(), cloud_out.size());
+  // fprintf(stderr, "RANDEL: orig=%lu, gnd_removed=%lu, depth_image=%lu\n", cloud_in.size(), cloud_out.size(),  _count);
+  
+//   this->ShareDataWithAllClients(cloud_copy);
+  _counter++;
+}
+
+
+void DepthGroundRemover::ProcessCloud2(const Cloud& cloud_in, Cloud& cloud_out) {
+  if (!cloud_in.projection_ptr()) {
+    fprintf(stderr, "No projection in cloud. Skipping ground removal.\n");
+    return;
+  }
+
+  const cv::Mat& depth_image =
+      RepairDepth(cloud_in.projection_ptr()->depth_image(), 5, 1.0f);
+  Timer total_timer;
+  auto angle_image = CreateAngleImage(depth_image);
+  auto smoothed_image = ApplySavitskyGolaySmoothing(angle_image, _window_size);
+  auto no_ground_image = ZeroOutGroundBFS(depth_image, smoothed_image,
+                                          _ground_remove_angle, _window_size);
+  fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
+
+  // using un-project
+  Timer ref_timer2;
+  //this will initialize cloud_copy from depth_image
+  cloud_out.InitFromImage(no_ground_image, cloud_in);
+  
+  fprintf(stderr, "INFO: time to get cloud_copy (un-project): %lu us\n", ref_timer2.measure());
+  
+
+  // count of non-0 in depth_image
+  // unsigned long _count=0;
+  // for (int row = 0; row < int(cloud_in.projection_ptr()->rows()); ++row) {
+  //     for (int col = 0; col < int(cloud_in.projection_ptr()->cols()); ++col) {
+  //       if (no_ground_image.at<float>(row, col) != 0.0){
+  //         _count++;
+  //       }
+  //     }
+  // }
+
+
+  fprintf(stderr, "RANDEL: orig=%lu, gnd_removed(unproject)=%lu\n", cloud_in.size(), cloud_out.size());
+  
+//   fprintf(stderr, "RANDEL: orig size: %lu copy size%lu", cloud_in.points().size(), cloud_out.points().size());
 //   this->ShareDataWithAllClients(cloud_copy);
   _counter++;
 }

@@ -115,6 +115,8 @@ int main(int argc, char* argv[]) {
   auto exit_code = application.exec();
 
   // if we close application, still wait for ros to shutdown
+  fprintf(stderr, "$$$$$$$$$$$$$$$ WAITING FOR SHUTDOWN$$$$$");
   ros::waitForShutdown();
+  fprintf(stderr, "###### SHUTDOWN DONE######");
   return exit_code;
 }

@@ -76,13 +76,13 @@ void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
   auto smoothed_image = ApplySavitskyGolaySmoothing(angle_image, _window_size);
   auto no_ground_image = ZeroOutGroundBFS(depth_image, smoothed_image,
                                           _ground_remove_angle, _window_size);
-  fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
+  // fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
 
   cloud_out.SetProjectionPtr(cloud_in.projection_ptr()->Clone());
   cloud_out.projection_ptr()->depth_image() = no_ground_image;
 
   // using point container
-  Timer ref_timer1;
+  // Timer ref_timer1;
   // fprintf(stderr, "RANDEL: check=%lu\n", cloud_out.size());
   // const cv::Mat& depth_img =  cloud_in.projection_ptr()->depth_image();      // calling it is too long
   for (int row = 0; row < int(cloud_in.projection_ptr()->rows()); ++row) {
@@ -120,7 +120,7 @@ void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
         }
       }
   }
-  fprintf(stderr, "INFO: time to get cloud_out (copying references): %lu us\n", ref_timer1.measure());
+  // fprintf(stderr, "INFO: time to get cloud_out (copying references): %lu us\n", ref_timer1.measure());
 
   // // count of non-0 in depth_image
   // unsigned long _count=0;
@@ -132,7 +132,7 @@ void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
   //     }
   // }
 
-  fprintf(stderr, "RANDEL: orig=%lu, gnd_removed(copy)=%lu\n", cloud_in.size(), cloud_out.size());
+  // fprintf(stderr, "RANDEL: orig=%lu, gnd_removed(copy)=%lu\n", cloud_in.size(), cloud_out.size());
   // fprintf(stderr, "RANDEL: orig=%lu, gnd_removed=%lu, depth_image=%lu\n", cloud_in.size(), cloud_out.size(),  _count);
   
 //   this->ShareDataWithAllClients(cloud_copy);
@@ -148,12 +148,12 @@ void DepthGroundRemover::ProcessCloud2(const Cloud& cloud_in, Cloud& cloud_out) 
 
   const cv::Mat& depth_image =
       RepairDepth(cloud_in.projection_ptr()->depth_image(), 5, 1.0f);
-  Timer total_timer;
+  // Timer total_timer;
   auto angle_image = CreateAngleImage(depth_image);
   auto smoothed_image = ApplySavitskyGolaySmoothing(angle_image, _window_size);
   auto no_ground_image = ZeroOutGroundBFS(depth_image, smoothed_image,
                                           _ground_remove_angle, _window_size);
-  fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
+  // fprintf(stderr, "INFO: Ground removed in %lu us\n", total_timer.measure());
 
   // using un-project
   Timer ref_timer2;
@@ -174,7 +174,7 @@ void DepthGroundRemover::ProcessCloud2(const Cloud& cloud_in, Cloud& cloud_out) 
   // }
 
 
-  fprintf(stderr, "RANDEL: orig=%lu, gnd_removed(unproject)=%lu\n", cloud_in.size(), cloud_out.size());
+  // fprintf(stderr, "RANDEL: orig=%lu, gnd_removed(unproject)=%lu\n", cloud_in.size(), cloud_out.size());
   
 //   fprintf(stderr, "RANDEL: orig size: %lu copy size%lu", cloud_in.points().size(), cloud_out.points().size());
 //   this->ShareDataWithAllClients(cloud_copy);

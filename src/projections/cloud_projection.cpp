@@ -80,7 +80,7 @@ void CloudProjection::FixDepthSystematicErrorIfNeeded() {
     return;
   }
   if (_corrections.size() != static_cast<size_t>(_depth_image.rows)) {
-    fprintf(stderr, "[INFO]: Not correcting depth data.\n");
+    // fprintf(stderr, "[INFO]: Not correcting depth data.\n");
     return;
   }
   for (int r = 0; r < _depth_image.rows; ++r) {

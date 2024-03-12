@@ -176,8 +176,10 @@ include_directories(
   # for qt/widgets headers, for QT moc
   src
   include
-  # for QT moc files
-  ${PROJECT_BINARY_DIR}/src
+  # for QT moc files - for opengl_folder_player.cpp (in src) to find ui_opengl_folder_player.h  (in build)
+  ${PROJECT_BINARY_DIR}/src        
+  # since QT MOC file ui_opengl_folder_player.h needs qt/viewer/viewer.h (in src)
+  include/${PROJECT_NAME}
   # dependencies we have no control over
   SYSTEM ${EIGEN3_INCLUDE_DIR}
   SYSTEM ${Boost_INCLUDE_DIRS}

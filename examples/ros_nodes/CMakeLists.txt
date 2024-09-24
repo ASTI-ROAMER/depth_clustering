@@ -19,18 +19,23 @@
 ## DEALINGS IN THE SOFTWARE.
 
 
-add_executable(show_objects_node show_objects_node.cpp)
-target_link_libraries(show_objects_node
-                      ros_bridge
-                      image_labeler
-                      projections
-                      ground_remove
-                      visualization
-                      ${MY_QT_LIBRARIES}
-                      ${Boost_LIBRARIES}
-                      ${catkin_LIBRARIES}
-                      ${PCL_LIBRARIES}
-                      ${CMAKE_THREAD_LIBS_INIT})
+IF (MY_QT_LIBRARIES AND QGLVIEWER_LIBRARY)
+  message(STATUS "*** QT FOUND! [show_objects_node] WILL be built!")
+  add_executable(show_objects_node show_objects_node.cpp)
+  target_link_libraries(show_objects_node
+                        ros_bridge
+                        image_labeler
+                        projections
+                        ground_remove
+                        visualization
+                        ${MY_QT_LIBRARIES}
+                        ${Boost_LIBRARIES}
+                        ${catkin_LIBRARIES}
+                        ${PCL_LIBRARIES}
+                        ${CMAKE_THREAD_LIBS_INIT})
+ELSE()
+    message(STATUS "*** QT NOT FOUND! [show_objects_node] WILL NOT be built!")
+ENDIF()
 
 if (${PCL_FOUND})
   add_executable(save_clusters_node save_clusters_node.cpp)
@@ -53,7 +58,6 @@ if (${PCL_FOUND})
                         projections
                         ground_remove
                         cloud_saver
-                        ${MY_QT_LIBRARIES}
                         ${Boost_LIBRARIES}
                         ${catkin_LIBRARIES}
                         ${OpenCV_LIBS}
@@ -65,7 +69,6 @@ if (${PCL_FOUND})
                         projections
                         ground_remove
                         cloud_saver
-                        ${MY_QT_LIBRARIES}
                         ${Boost_LIBRARIES}
                         ${catkin_LIBRARIES}
                         ${OpenCV_LIBS}

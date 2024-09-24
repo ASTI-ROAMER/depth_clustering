@@ -15,7 +15,7 @@
 
 #include <ros/ros.h>
 
-#include <qapplication.h>
+// #include <qapplication.h>
 
 #include <string>
 
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
     exit(1);
   }
 
-  QApplication application(argc, argv);
+  // QApplication application(argc, argv);
 
   //string sub_topic_clouds = "/points_raw_map_crop";
   string sub_topic_clouds = "/velodyne_points";
@@ -113,9 +113,9 @@ int main(int argc, char* argv[]) {
   ros::AsyncSpinner spinner(1);
   spinner.start();
 
-  auto exit_code = application.exec();
+  // auto exit_code = application.exec();
 
   // if we close application, still wait for ros to shutdown
   ros::waitForShutdown();
-  return exit_code;
+  return 0;
 }

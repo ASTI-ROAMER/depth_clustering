@@ -18,33 +18,40 @@
 ## FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 ## DEALINGS IN THE SOFTWARE.
 
-add_executable(show_objects_kitti show_objects_kitti.cpp)
-target_link_libraries(show_objects_kitti
-                      identifiable
-                      image_labeler
-                      velodyne_utils
-                      projections
-                      ground_remove
-                      folder_reader
-                      viewer
-                      drawable
-                      ${MY_QT_LIBRARIES}
-                      ${Boost_LIBRARIES}
-                      ${PCL_LIBRARIES}
-                      ${CMAKE_THREAD_LIBS_INIT})
 
-add_executable(show_objects_moosmann show_objects_moosmann.cpp)
-target_link_libraries(show_objects_moosmann
-                      identifiable
-                      image_labeler
-                      velodyne_utils
-                      projections
-                      ground_remove
-                      folder_reader
-                      viewer
-                      drawable
-                      ${MY_QT_LIBRARIES}
-                      ${Boost_LIBRARIES}
-                      ${PCL_LIBRARIES}
-                      ${OpenCV_LIBS}
-                      ${CMAKE_THREAD_LIBS_INIT})
+IF (MY_QT_LIBRARIES AND QGLVIEWER_LIBRARY)
+    message(STATUS "*** QT FOUND! Examples with visualizations WILL be built!")
+    add_executable(show_objects_kitti show_objects_kitti.cpp)
+    target_link_libraries(show_objects_kitti
+                        identifiable
+                        image_labeler
+                        velodyne_utils
+                        projections
+                        ground_remove
+                        folder_reader
+                        viewer
+                        drawable
+                        ${MY_QT_LIBRARIES}
+                        ${Boost_LIBRARIES}
+                        ${PCL_LIBRARIES}
+                        ${CMAKE_THREAD_LIBS_INIT})
+
+    add_executable(show_objects_moosmann show_objects_moosmann.cpp)
+    target_link_libraries(show_objects_moosmann
+                        identifiable
+                        image_labeler
+                        velodyne_utils
+                        projections
+                        ground_remove
+                        folder_reader
+                        viewer
+                        drawable
+                        ${MY_QT_LIBRARIES}
+                        ${Boost_LIBRARIES}
+                        ${PCL_LIBRARIES}
+                        ${OpenCV_LIBS}
+                        ${CMAKE_THREAD_LIBS_INIT})
+ELSE()
+    message(STATUS "*** QT NOT FOUND! Examples with visualizations WILL NOT be built!")
+ENDIF()
+                    

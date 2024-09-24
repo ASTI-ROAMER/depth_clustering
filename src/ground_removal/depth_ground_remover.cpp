@@ -63,7 +63,7 @@ void DepthGroundRemover::OnNewObjectReceived(const Cloud& cloud, const int) {
 }
 
 
-void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
+void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out, Cloud& cloud_gnd) {
   if (!cloud_in.projection_ptr()) {
     fprintf(stderr, "No projection in cloud. Skipping ground removal.\n");
     return;
@@ -80,6 +80,9 @@ void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
 
   cloud_out.SetProjectionPtr(cloud_in.projection_ptr()->Clone());
   cloud_out.projection_ptr()->depth_image() = no_ground_image;
+
+  cloud_gnd.SetProjectionPtr(cloud_in.projection_ptr()->Clone());
+  cloud_gnd.projection_ptr()->depth_image() = no_ground_image;
 
   // using point container
   // Timer ref_timer1;
@@ -112,10 +115,15 @@ void DepthGroundRemover::ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out) {
           // } catch (size_t idx) {
           //   std::cerr << "************** RANDEL: WRONG INDEX: " << idx << std::endl; 
           // }
-
           // fastest, but has more pcl points, with changes on depth_clustering, points() will only have 1 element at most.
           for (const auto& p_idx: point_container.points() ){
             cloud_out.push_back(cloud_in.at(p_idx));
+          }
+        } 
+        else {              // put ground points in the ground_pcl
+          const auto& point_container_gnd = cloud_in.projection_ptr()->at(row, col);
+          for (const auto& p_idx: point_container_gnd.points() ){
+            cloud_gnd.push_back(cloud_in.at(p_idx));
           }
         }
       }

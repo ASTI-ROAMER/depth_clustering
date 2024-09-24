@@ -70,7 +70,7 @@ class DepthGroundRemover : public AbstractClient<Cloud>,
   void OnNewObjectReceived(const Cloud& cloud, const int sender_id) override;
 
   // this uses copying from reference
-  void ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out);
+  void ProcessCloud(const Cloud& cloud_in, Cloud& cloud_out, Cloud& cloud_gnd);
 
   // this uses un-projection
   void ProcessCloud2(const Cloud& cloud_in, Cloud& cloud_out);

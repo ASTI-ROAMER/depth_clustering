@@ -83,8 +83,10 @@ find_package(OpenCV REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem regex program_options)
 find_package(PCL QUIET COMPONENTS common io)
-find_package(QGLViewer REQUIRED)
+find_package(QGLViewer)
 
+
+set(MY_QT_LIBRARIES FALSE)
 # find correct qt version
 if(${DISTRO} MATCHES "14.04")
   find_package(Qt4 REQUIRED COMPONENTS QtCore QtXml QtOpenGL QtGui QtMultimedia)
@@ -95,6 +97,11 @@ if(${DISTRO} MATCHES "14.04")
       Qt4::QtXml
       Qt4::QtOpenGL
       Qt4::QtGui)
+  if(Qt4_FOUND)
+    message(STATUS "*** Qt4 for DISTRO[${DISTRO}] found!")
+  else()
+    message(STATUS "*** Qt4 for DISTRO[${DISTRO}] NOT found!")
+  endif()
 elseif(${DISTRO} MATCHES "16.04" OR ${DISTRO} MATCHES "18.04" OR ${DISTRO} MATCHES "20.04")
   find_package(Qt5 REQUIRED COMPONENTS Core Xml OpenGL Gui Widgets)
   include_directories(${Qt5Core_INCLUDE_DIRS}
@@ -108,11 +115,22 @@ elseif(${DISTRO} MATCHES "16.04" OR ${DISTRO} MATCHES "18.04" OR ${DISTRO} MATCH
       ${Qt5Gui_LIBRARIES}
       ${Qt5Xml_LIBRARIES}
       ${Qt5OpenGL_LIBRARIES})
+  if(Qt5_FOUND)
+    message(STATUS "*** Qt5 for DISTRO[${DISTRO}] found!")
+  else()
+    message(STATUS "*** Qt5 for DISTRO[${DISTRO}] NOT found!")
+  endif()
+else()
+  message(STATUS "DISTRO ${DISTRO} is not compatible!")
 endif()
+
+## Uncomment this if you don't want visualizer related things
+# set(MY_QT_LIBRARIES FALSE)
 
 # some status messages
 message(STATUS "Linking against Qt libs: ${MY_QT_LIBRARIES}")
 message(STATUS "Linking against QGlViewer lib: ${QGLVIEWER_LIBRARY}")
+# message(STATUS "found QGLVIEWER libs: ${QGLVIEWER_FOUND}")
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)

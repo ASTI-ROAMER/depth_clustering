@@ -174,21 +174,39 @@ else()
   set(ROS_FOUND NO)
 endif()
 
-catkin_package(
- INCLUDE_DIRS include
- LIBRARIES
-      cloud
-      identifiable
-      ground_remove
-      difference
-      image_labeler
-      projections
-      ros_bridge
-      velodyne_utils
-      folder_reader
-      visualization
- CATKIN_DEPENDS roscpp sensor_msgs std_msgs nav_msgs message_filters tf
-)
+
+IF (MY_QT_LIBRARIES AND QGLVIEWER_LIBRARY)
+  catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES
+        cloud
+        identifiable
+        ground_remove
+        difference
+        image_labeler
+        projections
+        ros_bridge
+        velodyne_utils
+        folder_reader
+        visualization
+  CATKIN_DEPENDS roscpp sensor_msgs std_msgs nav_msgs message_filters tf
+  )
+ELSE()
+  catkin_package(
+    INCLUDE_DIRS include
+    LIBRARIES
+          cloud
+          identifiable
+          ground_remove
+          difference
+          image_labeler
+          projections
+          ros_bridge
+          velodyne_utils
+          folder_reader
+    CATKIN_DEPENDS roscpp sensor_msgs std_msgs nav_msgs message_filters tf
+    )
+ENDIF()
 
 include_directories(
   # for qt/widgets headers, for QT moc

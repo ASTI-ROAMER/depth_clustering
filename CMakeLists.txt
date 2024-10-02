@@ -204,9 +204,17 @@ include_directories(
   SYSTEM ${PCL_INCLUDE_DIRS}
   SYSTEM ${OpenCV_INCLUDE_DIRS}
   SYSTEM ${OpenGL_INCLUDE_DIRS}
-  SYSTEM ${QGLVIEWER_INCLUDE_DIR}
   SYSTEM ${catkin_INCLUDE_DIRS}
 )
+
+IF (MY_QT_LIBRARIES AND QGLVIEWER_LIBRARY)
+  message(STATUS "**** Including QGLVIEWER_INCLUDE_DIR!!!")
+  include_directories(
+    SYSTEM ${QGLVIEWER_INCLUDE_DIR}
+  )
+ELSE()
+  message(STATUS "**** NOT including QGLVIEWER_INCLUDE_DIR!!!")
+ENDIF()
 
 add_subdirectory(src)
 add_subdirectory(examples)
